@@ -4,7 +4,7 @@
 {% set _collapsed = collapsed|default(false) %}
 {% set _solid     = solid|default(admin_lte_context.widget.solid)  %}
 {% set _border    = border|default(admin_lte_context.widget.bordered)  %}
-{% set _footer    = use_footer|default(admin_lte_context.widget.use_footer) or block('box_footer') is defined %}
+{% set _footer    = (use_footer is defined ? use_footer : admin_lte_context.widget.use_footer) or block('box_footer') is defined %}
 
 {% if removable is not defined %}
     {% set removable = admin_lte_context.widget.removable %}
