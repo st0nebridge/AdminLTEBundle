@@ -1,19 +1,19 @@
-{% macro action_toolbutton(icon, action, label) %}
-    <button class="btn btn-box-tool" data-widget="{{ action }}" data-toggle="tooltip" title="{{ label|default('') }}">
+{% macro action_toolbutton(icon, action, label, class) %}
+    <button class="btn {{ class|default('btn-box-tool') }}" data-widget="{{ action }}" data-toggle="tooltip" title="{{ label|default('') }}">
         <i class="{{ icon|default('times') }}"></i>
     </button>
 {% endmacro %}
 
-{% macro link_toolbutton(icon, href, label) %}
-    <a href="{{ href }}" class="btn btn-box-tool" data-toggle="tooltip" title="{{ label|default('') }}">
+{% macro link_toolbutton(icon, href, label, class) %}
+    <a href="{{ href }}" class="btn {{ class|default('btn-box-tool') }}" data-toggle="tooltip" title="{{ label|default('') }}">
         <i class="{{ icon|default('times') }}"></i>
     </a>
 {% endmacro %}
 
-{% macro link_button(label, href, icon, type, size) %}
-    {% set _size = size|default(admin_lte_context.button.size) %}
-    {% set _type = type|default(admin_lte_context.button.type) %}
-    <a href="{{ href|default('#') }}" class="btn btn-{{ _type }}{% if _size %} btn-{{ _size }}{% endif %}">
+{% macro link_button(label, href, icon, type, size, class) %}
+    {% set _size = class is not defined or class == '' ? size|default(admin_lte_context.button.size) %}
+    {% set _type = class is not defined or class == '' ? type|default(admin_lte_context.button.type) %}
+    <a href="{{ href|default('#') }}" class="btn{% if class %} {{ class }}{% endif %}{% if _type %} btn-{{ _type }}{% endif %}{% if _size %} btn-{{ _size }}{% endif %}">
         {% if icon %}
             <i class="{{ icon }}"></i>
         {% endif %}
@@ -23,10 +23,10 @@
     </a>
 {% endmacro %}
 
-{% macro action_button(label, action, icon, type, size) %}
-    {% set _size = size|default(admin_lte_context.button.size) %}
-    {% set _type = type|default(admin_lte_context.button.type) %}
-    <button data-action="{{ action }}" class="btn btn-{{ _type }}{% if _size %} btn-{{ _size }}{% endif %}">
+{% macro action_button(label, action, icon, type, size, class) %}
+    {% set _size = class is not defined or class == '' ? size|default(admin_lte_context.button.size) %}
+    {% set _type = class is not defined or class == '' ? type|default(admin_lte_context.button.type) %}
+    <button data-action="{{ action }}" class="btn{% if class %} {{ class }}{% endif %}{% if _type %} btn-{{ _type }}{% endif %}{% if _size %} btn-{{ _size }}{% endif %}">
         {% if icon %}
             <i class="{{ icon }}"></i>
         {% endif %}
