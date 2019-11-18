@@ -6,7 +6,7 @@
 #}
 
 {% block form_errors %}
-    {% filter spaceless %}
+    {% apply spaceless %}
         {% if errors|length > 0 %}
             <ul class="list-unstyled">
                 {% for error in errors %}
@@ -14,7 +14,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endfilter %}
+    {% endapply %}
 {% endblock form_errors %}
 
 {% block widget_attributes %}
@@ -42,13 +42,13 @@
 {% endblock widget_attributes %}
 
 {% block choice_widget_expanded %}
-    {% filter spaceless %}
+    {% apply spaceless %}
         <div {{ block('widget_container_attributes') }}>
             {% for child in form %}
                 {{ form_widget(child) }}
             {% endfor %}
         </div>
-    {% endfilter %}
+    {% endapply %}
 {% endblock choice_widget_expanded %}
 
 {% block choice_widget_collapsed %}
@@ -63,7 +63,7 @@
 
 {% block checkbox_widget %}
     <div class="checkbox">
-        {% filter spaceless %}
+        {% apply spaceless %}
             {% if not compound %}
                 {% set label_attr = label_attr|merge({'for': id}) %}
             {% endif %}
@@ -80,13 +80,13 @@
                 {{ label|trans({}, translation_domain) }}
             {% endif %}
             </label>
-        {% endfilter %}
+        {% endapply %}
     </div>
 {% endblock checkbox_widget %}
 
 {% block radio_widget %}
     <div class="radio">
-        {% filter spaceless %}
+        {% apply spaceless %}
             {% if not compound %}
                 {% set label_attr = label_attr|merge({'for': id}) %}
             {% endif %}
@@ -102,7 +102,7 @@
                 {{ label|trans({}, translation_domain) }}
             {% endif %}
             </label>
-        {% endfilter %}
+        {% endapply %}
     </div>
 {% endblock radio_widget %}
 
@@ -113,12 +113,14 @@
                 <i class="far fa-calendar-alt"></i>
             </div>
 
-            {% if attr.class is defined %}
-                {% set class = attr.class ~ ' timepicker' %}
-            {% else %}
-                {% set class = ' timepicker' %}
+            {% if type is not defined or type != 'date' %}
+                {% if attr.class is defined %}
+                    {% set class = attr.class ~ ' timepicker' %}
+                {% else %}
+                    {% set class = ' timepicker' %}
+                {% endif %}
+                {% set attr = attr|merge({'class' : class, 'data-datepickerenable':'on'}) %}
             {% endif %}
-            {% set attr = attr|merge({'class' : class, 'data-datepickerenable':'on'}) %}
 
             {{ block('form_widget_simple') }}
         </div>
@@ -144,12 +146,14 @@
                 <div class="input-group-addon add-on">
                     <i class="far fa-clock"></i>
                 </div>
-                {% if attr.class is defined %}
-                    {% set class = attr.class ~ ' timepicker' %}
-                {% else %}
-                    {% set class = ' timepicker' %}
+                {% if type is not defined or type != 'time' %}
+                    {% if attr.class is defined %}
+                        {% set class = attr.class ~ ' timepicker' %}
+                    {% else %}
+                        {% set class = ' timepicker' %}
+                    {% endif %}
+                    {% set attr = attr|merge({'class' : class, 'data-timepicker':'on'}) %}
                 {% endif %}
-                {% set attr = attr|merge({'class' : class, 'data-timepicker':'on'}) %}
                 {{ block('form_widget_simple') }}
             </div>
         </div>
