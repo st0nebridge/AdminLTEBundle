@@ -33,6 +33,9 @@ Encore
 
     // for "legacy" applications that require $/jQuery as a global variable
     .autoProvidejQuery()
+    .addAliases({
+        'jquery': require.resolve('jquery')
+    })
 
     // see https://symfony.com/doc/current/frontend/encore/bootstrap.html
     .enableSassLoader(function(sassOptions) {}, {
