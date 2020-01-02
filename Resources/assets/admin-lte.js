@@ -7,6 +7,7 @@ require('jquery-ui');
 require('bootstrap-sass');
 require('jquery-slimscroll');
 require('bootstrap-select');
+require('bootstrap-colorpicker');
 
 const Moment = require('moment');
 global.moment = Moment;

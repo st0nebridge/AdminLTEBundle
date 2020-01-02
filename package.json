@@ -13,7 +13,8 @@
         "js-cookie": "^2.2.0",
         "node-sass": "^4.9.0",
         "sass-loader": "^7.0.2",
-        "webpack-notifier": "^1.5.1"
+        "webpack-notifier": "^1.5.1",
+        "bootstrap-colorpicker": "^2.5.3"
     },
     "license": "MIT",
     "private": true,
@@ -22,6 +23,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production"
-    },
-    "dependencies": {}
+    }
 }
