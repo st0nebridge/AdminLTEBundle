@@ -8,6 +8,7 @@ require('bootstrap-sass');
 require('jquery-slimscroll');
 require('bootstrap-select');
 require('bootstrap-colorpicker');
+require('bootstrap-slider');
 
 const Moment = require('moment');
 global.moment = Moment;
