@@ -23,5 +23,7 @@
         "watch": "encore dev --watch",
         "build": "encore production"
     },
-    "dependencies": {}
+    "dependencies": {
+        "selectize": "^0.12.6"
+    }
 }
