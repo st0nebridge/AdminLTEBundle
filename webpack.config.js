@@ -1,6 +1,8 @@
 var Encore = require('@symfony/webpack-encore');
 
-Encore.configureRuntimeEnvironment('dev');
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
 
 Encore
 // the project directory where compiled assets will be stored
@@ -32,6 +34,9 @@ Encore
 
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
+    
+	.disableSingleRuntimeChunk()
+
 
     // for "legacy" applications that require $/jQuery as a global variable
     .autoProvidejQuery()
