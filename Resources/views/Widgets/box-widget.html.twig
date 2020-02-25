@@ -12,11 +12,11 @@
 {% if collapsible is not defined %}
     {% set collapsible =  (_collapsed or admin_lte_context.widget.collapsible) %}
 {% endif %}
-<div class="box box-{{ boxtype|default(admin_lte_context.widget.type) }}{{ _solid ? ' box-solid' : '' }}{{ _collapsed ? ' collapsed-box' : '' }}">
+<div class="box box-{{ boxtype|default(admin_lte_context.widget.type) }}{{ _solid ? ' box-solid' : '' }}{{ _collapsed ? ' collapsed-box' : '' }}"{% if block('box_attributes') is defined %} {{ block('box_attributes') }}{% endif %}>
     {% if block('box_title') is defined or collapsible or removable %}
     <div class="box-header{{ _border ? ' with-border' : '' }}">
         {% if block('box_title') is defined %}<h3 class="box-title">{{ block('box_title') }}</h3>{% endif %}
-        <div class="box-tools pull-right">
+        <div class="box-tools pull-right"{% if block('box_tools_attributes') is defined %} {{ block('box_tools_attributes') }}{% endif %}>
             {# Buttons, labels, and many other things can be placed here! #}
             {% if block('box_tools') is defined %}{{ block('box_tools') }}{% endif %}
             {% if collapsible %}
@@ -38,8 +38,15 @@
     </div>
     {% endif %}
     <div class="box-body{% if block('box_body_class') is defined %} {{ block('box_body_class') }}{% endif %}">{{ block('box_body') }}</div>
-    {% if _footer %}
-        <div class="box-footer">{% if block('box_footer') is defined %}{{ block('box_footer') }}{% endif %}</div>
+    {% if _footer and block('box_footer') is defined %}
+        {# 
+            If there is a form in the block_footer, it will be rendered when checking "is not empty". 
+            Therefor we have to cache the output first and then perform the checks. 
+        #}
+        {% set boxFooter = block('box_footer') %}
+        {% if boxFooter is not empty %}
+            <div class="box-footer">{{ boxFooter|raw }}</div>
+        {% endif %}
     {% endif %}
 </div>
 {% if block('box_after') is defined %}{{ block('box_after') }}{% endif %}
