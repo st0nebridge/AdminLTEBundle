@@ -1,5 +1,5 @@
 {
-    "name": "kevinpapst/adminlte-bundle",
+    "name": "st0nebridge/adminlte-bundle",
     "type": "symfony-bundle",
     "description": "Admin theme bundle for Symfony 4 based on AdminLTE 2.4.8 with FOSUserBundle support",
     "license": "MIT",
@@ -42,7 +42,7 @@
         "friendsofsymfony/user-bundle": "Allows easy user management and security support"
     },
     "autoload": {
-        "psr-4": { "KevinPapst\\AdminLTEBundle\\": "libs/AdminLTEBundle/" }
+        "psr-4": { "KevinPapst\\AdminLTEBundle\\": "" }
     },
     "scripts": {
         "tests": "vendor/bin/phpunit Tests/",
