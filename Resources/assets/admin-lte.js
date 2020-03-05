@@ -9,9 +9,7 @@ require('jquery-slimscroll');
 require('bootstrap-select');
 require('bootstrap-colorpicker');
 require('bootstrap-slider');
-require('selectize/dist/css/selectize.css');
-require('selectize/dist/css/selectize.default.css');
-require('selectize/dist/js/selectize.min');
+require('selectize/dist/js/selectize.min.js');
 
 const Moment = require('moment');
 global.moment = Moment;

@@ -16,12 +16,13 @@
     {% if block('box_title') is defined or collapsible or removable %}
     <div class="box-header{{ _border ? ' with-border' : '' }}">
         {% if block('box_title') is defined %}<h3 class="box-title">{{ block('box_title') }}</h3>{% endif %}
+        {% if block('box_heading_extra') is defined %}{{ block('box_heading_extra') }}{% endif %}
         <div class="box-tools pull-right"{% if block('box_tools_attributes') is defined %} {{ block('box_tools_attributes') }}{% endif %}>
             {# Buttons, labels, and many other things can be placed here! #}
             {% if block('box_tools') is defined %}{{ block('box_tools') }}{% endif %}
             {% if collapsible %}
                 {{ button.action_toolbutton(
-                    _collapsed ? 'fas fa-plus'  : 'fas fa-minus' ,
+                    _collapsed ? 'fas fa-plus'  : 'fas fa-minus',
                     'collapse',
                     collapsible_title|default(admin_lte_context.widget.collapsible_title|default()|trans({}, 'AdminLTEBundle'))
                 ) }}
